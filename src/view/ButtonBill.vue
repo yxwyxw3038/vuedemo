@@ -7,11 +7,11 @@
     </template>
   <div>
     <el-form :inline="true"  class="searchform">
-    <el-form-item label="菜单名称：" class="searchinput">
-    <el-input v-model="searchMenuName" placeholder="请输入菜单查询条件" class="searchinput"  size="mini"   type="text" clearable></el-input>
+    <el-form-item label="按钮名称：" class="searchinput">
+    <el-input v-model="searchButtonName" placeholder="请输入按钮名称查询条件" class="searchinput"  size="mini"   type="text" clearable></el-input>
   </el-form-item>
-   <el-form-item label="上级节点：" class="searchinput">
-    <el-input v-model="searchParentId" placeholder="请输入上级节点ID查询条件" class="searchinput"  size="mini"   type="text" clearable></el-input>
+  <el-form-item label="按钮代码：" class="searchinput">
+    <el-input v-model="searchButtonCode" placeholder="请输入按钮代码查询条件" class="searchinput"  size="mini"   type="text" clearable></el-input>
   </el-form-item>
    <el-form-item label="修改日期：" class="searchinput">
     <el-date-picker size="mini" 
@@ -45,60 +45,41 @@
         label="序号" 
      fixed >
     </el-table-column>
-    <el-table-column prop="Id" label="菜单ID"  width="100px" fixed>
+    <el-table-column prop="Id" label="按钮ID"  width="100px" fixed>
   
   
   
     </el-table-column>
   
   
+     <el-table-column prop="Code" label="按钮代码"   width="200px"  fixed>
   
-    <el-table-column prop="Name" label="菜单名称"   width="150px"  fixed>
+  
+  
+    </el-table-column>
+    <el-table-column prop="Name" label="按钮名称"   width="250px"  fixed>
   
   
   
     </el-table-column>
   
-  
-  
-    <el-table-column prop="ParentId" label="父节点ID" >
-  
-  
-  
-    </el-table-column>
-  
-  
-  
-    <el-table-column prop="Code" label="标识码" >
+     <el-table-column prop="Icon" label="图片代码"  width="150px" >
   
   
   
     </el-table-column>
   
+    <el-table-column prop="Sort" label="排序"   width="80px" >
   
   
   
-  
-    <el-table-column prop="LinkAddress" label="链接地址" >
+    </el-table-column>
+   <el-table-column prop="Description" label="按钮功能描述"   >
   
   
   
     </el-table-column>
   
-  
-  
-    <el-table-column prop="Icon" label="图标" >
-  
-  
-  
-    </el-table-column>
-  
-  
-      <el-table-column prop="Sort" label="排序" >
-  
-  
-  
-    </el-table-column>
   
     <el-table-column prop="UpdateTime" label="修改时间" >
   
@@ -128,42 +109,32 @@
     </el-pagination>
   <el-dialog :title="dialogTitle" :visible.sync="dialogFormVisible" >
   <el-form :model="form" ref="form" :rules="rules" label-width="120px" >
-    <el-form-item label="菜单名称："  prop="Name">
+    <el-form-item label="按钮名称："  prop="Name">
         <el-col :span="8">
      <el-input v-model="form.Name" ></el-input>
       </el-col>
     </el-form-item>
-     <el-form-item label=" 父节点：" prop="ParentId" >
-         <el-col :span="8">
-   <el-cascader 
-  :options="menu"
-  :show-all-levels="false"
-  change-on-select
-   v-model="selectedOptions"
-></el-cascader>
-         </el-col>
-    </el-form-item>
-     <el-form-item label="标识码：" prop="Code" >
-       <el-col :span="8">
+   <el-form-item label="按钮代码："  prop="Code">
+        <el-col :span="8">
      <el-input v-model="form.Code" ></el-input>
-       </el-col>
+      </el-col>
     </el-form-item>
-     
-      <el-form-item label="链接地址:" >
-         <el-col :span="16">
-     <el-input v-model="form.LinkAddress" ></el-input>
-         </el-col>
-    </el-form-item>
-     <el-form-item label="图标:" prop="Icon" >
-       <el-col :span="8">
+      <el-form-item label="图片代码："  prop="Icon">
+        <el-col :span="8">
      <el-input v-model="form.Icon" ></el-input>
-       </el-col>
-     
+      </el-col>
     </el-form-item>
-    <el-form-item label="排序:" >
+
+
+    <el-form-item label="排序:" prop="Sort">
        <el-col :span="8">
      <el-input v-model="form.Sort"  type="number" min="0" ></el-input>
        </el-col>
+    </el-form-item>
+    <el-form-item label="功能描述：" prop="Description" >
+         <el-col :span="16">
+   <el-input v-model="form.Description"  type="textarea" :rows="2" placeholder="请输入内容" ></el-input>
+         </el-col>
     </el-form-item>
   </el-form>
   <div slot="footer" class="dialog-footer">
@@ -171,16 +142,6 @@
     <el-button type="primary" @click="submitForm('form')">确 定</el-button>
   </div>
 </el-dialog>
-  <el-dialog :title="dialogSetMenuButtonTitle" :visible.sync="dialogSetMenuButtonVisible" >
-    <el-transfer v-model="transferSetMenuButtonValue" :data="transferSetMenuButtonData"
-     :titles="['未赋权', '已赋权']"
-      :button-texts="['删除', '添加']"
-      ></el-transfer>
-     <div slot="footer" class="dialog-footer">
-    <el-button @click="closeForm('transfer')">取 消</el-button>
-    <el-button type="primary" @click="submitForm('transfer')">确 定</el-button>
-  </div>
- </el-dialog> 
 </div> 
 
 </template>
@@ -194,12 +155,9 @@ import store from '../store/store.js';
       return {
         user:new Object(),
         tableData: [],
-        searchMenuName:"",
-        searchParentId:"",
+        searchButtonName:"",
         searchUpdateTime:'',
-        searchMenuName:"",
-        menuBillParameterStr:'',
-        date1:'',
+        searchButtonCode:"",
         loading:false,
         multipleSelection: [],
         currentPage:1,
@@ -207,43 +165,37 @@ import store from '../store/store.js';
         totalCount:400,
         dialogFormVisible:false,
         form: {
-          ID:0,
-          Name:'',
-          ParentId:"0",
-          Code:'',
-          LinkAddress:'',
-          Icon:'',
-          Sort:'',
-          CreateBy:''
+         Id:0,
+         Name:'',
+         Code:'',
+         Icon:'',
+         Description:'',
+         Sort:0,
+         CreateTime:'',
+         CreateBy:'',
+         UpdateTime:'',
+         UpdateBy:''
         },
-      selectedOptions:[],
-       menu:[],
+      
        dialogTitle:'',
        dialogEditOrNew:'',
+       buttonBillParameterStr:'',
        rules: {
           Name: [
-            { required: true, message: '请输入菜单名称', trigger: 'blur' }
+            { required: true, message: '请输入按钮名称', trigger: 'blur' }
          
           ],
-           ParentId: [
-            { required: true, message: '请选择父节点', trigger: 'blur' }
-         
-          ] ,
-           Code: [
-            { required: true, message: '请选择标识码', trigger: 'blur' }
+          Code: [
+            { required: true, message: '请输入按钮代码', trigger: 'blur' }
          
           ],
-           Icon: [
-            { required: true, message: '请选择图标', trigger: 'blur' }
+          Icon: [
+            { required: true, message: '请输入按钮图标', trigger: 'blur' }
          
           ]
-      
           
-        },
-        dialogSetMenuButtonTitle:'',
-        dialogSetMenuButtonVisible:false,
-        transferSetMenuButtonData:[],
-        transferSetMenuButtonValue:[]
+          
+        }
       };
   
     },
@@ -254,91 +206,26 @@ import store from '../store/store.js';
     created() {
       this.user=this.$store.state.userInfo;
       this.init();
-      this.GetMenu();
+ 
     
     },
   
   
   
     methods: {
-    submitsetMenuButton()
-    {
-         var _self = this;
-         var buttonStr='';
-         if(this.transferSetMenuButtonValue.length>0)
-         {
-           for(var i=0;i<this.transferSetMenuButtonValue.length;i++)
-           {
-             if(i===this.transferSetMenuButtonValue.length-1)
-             {
-                  buttonStr=buttonStr+this.transferSetMenuButtonValue[i].toString();
-             }
-             else{
-                   buttonStr=buttonStr+this.transferSetMenuButtonValue[i].toString()+',';
-             }
-           }
-         }
-        // buttonStr=
-         this.$api.post("User/SetMenuButton", {  Token:this.$store.state.userInfo.Token,menuId:this.multipleSelection[0].Id ,buttonStr:buttonStr}, response => {
 
-          if (response.status >= 200 && response.status < 300) {
-  
-            if (response.data) {
-              var jsonData = eval("(" + response.data + ")");
-  
-              if (jsonData.Code == "1") {
-  
-                
-    
-                
-                 this.$message({
-                    message: '保存成功！',
-                    type: 'success'
-                  });
-
-                  this.dialogSetMenuButtonVisible=false;
-               
-              } 
-             
-              
-              else {
-  
- 
-                this.$message.error(jsonData.Message);
-                console.log(jsonData.Message);
-  
-  
-  
-              }
-  
-            }
-  
-  
-  
-          } else {
-            this.$message.error(response.message);
-  
-  
-          }
-  
-        });
-    },
       submitInfo()
       {
         
-         if( this.selectedOptions.length>0)
-         {
         
-             this.form.ParentId=Number(this.selectedOptions[this.selectedOptions.length-1]);
-         }
-       var optUrl="User/AddMenu";
+       var optUrl="User/AddButton";
        if( this.dialogEditOrNew==="0")
        {
-           optUrl="User/AddMenu";
+           optUrl="User/AddButton";
             this.form.CreateBy=this.$store.state.userInfo.AccountName;
        }
        else{
-           optUrl="User/UpdateMenu";
+           optUrl="User/UpdateButton";
            this.form.UpdateBy=this.$store.state.userInfo.AccountName;
        }
          var Jsonstr= JSON.stringify(this.form);
@@ -382,8 +269,7 @@ import store from '../store/store.js';
             this.$message.error(response.message);
   
   
-  
-           // console.log(response.message);
+
   
           }
   
@@ -404,7 +290,7 @@ import store from '../store/store.js';
           }
           else if(formName==="transfer")
           {
-            this.submitsetMenuButton();
+        
            
           }
       },
@@ -415,63 +301,8 @@ import store from '../store/store.js';
          }
           else if(formName==="transfer")
           {
-            this.dialogSetMenuButtonVisible=false;
-          }
-      },
-      GetMenu()
-      {
-        var _self = this;
-           this.$api.post("User/GetCascaderMenuo", {  Token:this.$store.state.userInfo.Token}, response => {
         
-           _self.menu=[];
-  
-         // console.log(response.status);
-  
-          if (response.status >= 200 && response.status < 300) {
-  
-            if (response.data) {
-              var jsonData = eval("(" + response.data + ")");
-  
-              if (jsonData.Code == "1") {
-  
-                if (jsonData.Data) {
-    
-              
-                  var info=JSON.parse(jsonData.Data);
-                  _self.menu=info;
-                //  console.log( _self.menu[0].Id);
-
-                 
-                }
-
-  
-  
-  
-              } else {
-  
- 
-                _self.$message.error(jsonData.Message);
-                console.log(jsonData.Message);
-  
-  
-  
-              }
-  
-            }
-  
-  
-  
-          } else {
-            _self.$message.error(response.message);
-  
-  
-  
-           // console.log(response.message);
-  
           }
-  
-        });
-      
       },
     indexMethod(index) {
         return index +(this.currentPage-1)*this.currentpagesize +1;
@@ -522,9 +353,6 @@ import store from '../store/store.js';
            case 'delete':
            this.delete();
           break;
-          case 'setmenubutton':
-          this.setmenubutton();
-          break;
           default:
           this.$message.error(btnMsg);
           break;
@@ -535,9 +363,10 @@ import store from '../store/store.js';
        {
 
           var _self = this;
-          this.dialogTitle="新增菜单";
+          this.dialogTitle="新增按钮";
           this.dialogEditOrNew="0";
-           this.$api.post("User/GetMenuAllCount", {  Token:this.$store.state.userInfo.Token}, response => {
+          
+          this.$api.post("User/GetButtonAllCount", {  Token:this.$store.state.userInfo.Token}, response => {
         
          
   
@@ -551,56 +380,32 @@ import store from '../store/store.js';
               if (jsonData.Code == "1") {
   
                 if (jsonData.Data) {
-    
               
                   _self.form= {
-                    Id:0,
-                    Name:'',
-                    ParentId:"0",
-                    Code:'',
-                    LinkAddress:'',
-                    Icon:'',
-                    Sort:   Number(jsonData.Data)+1,
-                    CreateTime:'',
-                    CreateBy:'',
-                    UpdateTime:'',
-                    UpdateBy:''
-                  };
-
                  
-                }
 
-  
-  
-  
+                        Id:0,
+                        Name:'',
+                        Code:'',
+                        Icon:'',
+                        Description:'',
+                        Sort:Number(jsonData.Data)+1,
+                        CreateTime:'',
+                        CreateBy:'',
+                        UpdateTime:'',
+                        UpdateBy:''
+                  };
+                }
               } else {
-  
- 
                 _self.$message.error(jsonData.Message);
                 console.log(jsonData.Message);
-  
-  
-  
               }
-  
             }
-  
-  
-  
           } else {
             this.$message.error(response.message);
-  
-  
-  
-           // console.log(response.message);
-  
-          }
-  
+          } 
         });
-
-
-
-         this.dialogFormVisible=true;
+       this.dialogFormVisible=true;
        },
        edit()
        {
@@ -614,10 +419,10 @@ import store from '../store/store.js';
            this.$message.error("请只选择一条要修改的数据！");
            return;
       }
-           this.dialogTitle="修改菜单";
+           this.dialogTitle="修改按钮信息";
            this.dialogEditOrNew="1";
           var _self = this;
-           this.$api.post("User/GetMenuById", {  
+           this.$api.post("User/GetButtonById", {  
               Token:this.$store.state.userInfo.Token,
               Id: this.multipleSelection[0].Id}, response => {
         
@@ -636,21 +441,9 @@ import store from '../store/store.js';
     
                 var tempdata= eval("(" + jsonData.Data+ ")");
                   _self.form= tempdata;
-
-                  if(_self.menu&&_self.menu.length>0)
-                  {
-                   var returnstr=   _self.GetSelectParentId(_self.menu,tempdata.ParentId.toString());
-                   if(returnstr==="-1")
-                   {
-                      _self.selectedOptions=[0];
-                   }
-                   else{
-                    var list=returnstr.split(',');
-                    _self.selectedOptions=list;
-                   }
-                  // _self.selectedOptions=[tempdata.ParentId.toString()];
-                  }
-                 _self.dialogTitle="修改-"+this.multipleSelection[0].Name+"-菜单信息"
+                
+             
+                 _self.dialogTitle="修改-"+this.multipleSelection[0].Name+"-按钮信息"
                  _self.dialogFormVisible=true;
                  
                 }
@@ -663,9 +456,6 @@ import store from '../store/store.js';
  
                 _self.$message.error(jsonData.Message);
                 console.log(jsonData.Message);
-  
-  
-  
               }
   
             }
@@ -674,10 +464,6 @@ import store from '../store/store.js';
   
           } else {
             _self.$message.error(response.message);
-  
-  
-  
-           // console.log(response.message);
   
           }
   
@@ -719,7 +505,7 @@ import store from '../store/store.js';
 
          }
          
-           this.$api.post("User/DeleteMenu", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
+           this.$api.post("User/DeleteButton", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
         
          
   
@@ -776,133 +562,13 @@ import store from '../store/store.js';
 
 
        },
-      setmenubutton()
-      {
-         if(!this.multipleSelection|| this.multipleSelection.length===0)
-         {
-           this.$message.error("请选择要赋权的菜单！");
-           return;
-         }
-        if(this.multipleSelection.length>1)
-        {
-            this.$message.error("请只选择一条要赋权的菜单！");
-            return;
-        }
-
-        var _self = this;
-        _self.dialogSetMenuButtonTitle="修改-"+this.multipleSelection[0].Name+"-按钮信息"
-         this.$api.post("User/GetButtonByMenuIdnForTransfer", {  Token:this.$store.state.userInfo.Token,menuId:this.multipleSelection[0].Id }, response => {
-
-          if (response.status >= 200 && response.status < 300) {
-  
-            if (response.data) {
-              var jsonData = eval("(" + response.data + ")");
-  
-              if (jsonData.Code == "1") {
-  
-                if (jsonData.Data) {
-    
-                
-                  var sp=jsonData.Data.split(',');
-                 
-                   _self.transferSetMenuButtonValue=sp;
-               
-               
-                 
-                }
-
-  
-  
-  
-              } 
-              else if (jsonData.Code == "0") {
-                _self.transferSetMenuButtonValue=[];
-              }
-              
-              else {
-  
- 
-                _self.$message.error(jsonData.Message);
-                console.log(jsonData.Message);
-  
-  
-  
-              }
-  
-            }
-  
-  
-  
-          } else {
-            _self.$message.error(response.message);
-  
-  
-  
-           // console.log(response.message);
-  
-          }
-  
-        });
-
-
-          this.$api.post("User/GetAllButtonForTransfer", {  Token:this.$store.state.userInfo.Token }, response => {
-
-          if (response.status >= 200 && response.status < 300) {
-  
-            if (response.data) {
-              var jsonData = eval("(" + response.data + ")");
-  
-              if (jsonData.Code == "1") {
-  
-                if (jsonData.Data) {
-    
-                 var tempdata= eval("(" + jsonData.Data+ ")");
-                  _self.transferSetMenuButtonData=tempdata;
-
-                 
-                
-               
-                  _self.dialogSetMenuButtonVisible=true;
-                 
-                }
-
-  
-  
-  
-              } else {
-  
- 
-                _self.$message.error(jsonData.Message);
-                console.log(jsonData.Message);
-  
-  
-  
-              }
-  
-            }
-  
-  
-  
-          } else {
-            _self.$message.error(response.message);
-  
-  
-  
-           // console.log(response.message);
-  
-          }
-  
-        });
-
-
-
-      },
+     
        search()
        {
-        this.menuBillParameterStr='';
-        var MenuBillParameter=[];
+        this.buttonBillParameterStr='';
+        var ButtonBillParameter=[];
        
-         if (this.searchMenuName == null || this.searchMenuName == undefined || this.searchMenuName == "") {
+         if (this.searchButtonName == null || this.searchButtonName == undefined || this.searchButtonName == "") {
 
          }
          else{
@@ -910,23 +576,22 @@ import store from '../store/store.js';
              parameter.action = "in";
              parameter.column = "Name";
              parameter.logic = "AND";
-             parameter.value = this.searchMenuName;
-             MenuBillParameter.push(parameter);
+             parameter.value = this.searchButtonName;
+             ButtonBillParameter.push(parameter);
 
          }
-        if (this.searchParentId == null || this.searchParentId == undefined || this.searchParentId == "") {
+      if (this.searchButtonCode == null || this.searchButtonCode == undefined || this.searchButtonCode == "") {
 
          }
          else{
            var   parameter=new Object();
-             parameter.action = "=";
-             parameter.column = "ParentId";
+             parameter.action = "in";
+             parameter.column = "Code";
              parameter.logic = "AND";
-             parameter.value = this.searchParentId;
-             MenuBillParameter.push(parameter);
+             parameter.value = this.searchButtonCode;
+             ButtonBillParameter.push(parameter);
 
          }
-         
       if (this.searchUpdateTime == null || this.searchUpdateTime == undefined || this.searchUpdateTime == "") {
 
          }
@@ -936,32 +601,28 @@ import store from '../store/store.js';
              parameter.column = "UpdateTime";
              parameter.logic = "AND";
              parameter.value = this.searchUpdateTime[0].toString();
-             MenuBillParameter.push(parameter);
+             ButtonBillParameter.push(parameter);
 
             var  parameter=new Object();
              parameter.action = "<=";
              parameter.column = "UpdateTime";
              parameter.logic = "AND";
              parameter.value = this.searchUpdateTime[1].toString();
-             MenuBillParameter.push(parameter);
+             ButtonBillParameter.push(parameter);
 
          }
-        this.menuBillParameterStr=JSON.stringify(MenuBillParameter);
+        this.buttonBillParameterStr=JSON.stringify(ButtonBillParameter);
         this.init();
        },
       init() {
   
         var _self = this;
-  
-  
-  
         _self.tableData = [];
+        _self.loading=false;
   
-  _self.loading=false;
-  
-        this.$api.post("User/GetAllMenuInfo",{
+        this.$api.post("User/GetAllButtonInfo",{
           Token:this.$store.state.userInfo.Token,
-          ParameterStr: this.menuBillParameterStr,
+          ParameterStr: this.buttonBillParameterStr,
           PageSize:this.currentpagesize,
           CurrentPage:this.currentPage
 
@@ -973,7 +634,6 @@ import store from '../store/store.js';
   
           if (response.status >= 200 && response.status < 300) {
   
-          //  console.log(response.data);
   
             if (response.data) {
   
@@ -1014,38 +674,11 @@ import store from '../store/store.js';
   
         });
   
-      },
-      GetSelectParentId(list,ParentId)
-      {
-
-          for(var i=0;i<list.length;i++)
-          {
-                if(list[i].value===ParentId)
-                {
-                  return list[i].value;
-                }
-                if(list[i].children)
-                {
-                if(list[i].children.length>0)
-                {
-                  var returnStr=this.GetSelectParentId(list[i].children,ParentId);
-                  if( returnStr==="-1")
-                  {
-
-                  }
-                  else{
-
-                  return  list[i].value+','+returnStr;
-                  }
-                }
-                }
-          }
-          return "-1";
       }
-  
     },
     components: {
              'v-btn-group':btnGroup
+         
     }
   
   };
