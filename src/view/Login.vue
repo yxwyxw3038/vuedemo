@@ -103,8 +103,8 @@
   border: 1px solid red;
 }
 </style>
- 
 <script>
+
   import store from '../store/store.js';
   import jsbase64 from 'js-base64';
   export default {
@@ -289,7 +289,6 @@
     },
   
     created() {
-  
     // var newuserInfo = new Object();
    //  window.localStorage.removeItem("newuserInfo");
      // 更新AUEX

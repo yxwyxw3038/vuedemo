@@ -31,10 +31,47 @@
       };
     },
     methods: {
+      logOut()
+      {
+           var _self = this;
+           this.$api.post("User/LoginOut", {  Token:this.$store.state.userInfo.Token,accountName:this.user.AccountName}, response => {
+        
+          
+    
+  
+          if (response.status >= 200 && response.status < 300) {
+  
+            if (response.data) {
+              var jsonData = eval("(" + response.data + ")");
+  
+              if (jsonData.Code == "1") {
+  
+                _self.clearQx();
+                 _self.PageQx();
+  
+              } else {
+  
+ 
+                this.$message.error(jsonData.Message);
+                console.log(jsonData.Message);
+  
+  
+  
+              }
+  
+            }
+  
+  
+  
+          } else {
+            this.$message.error(response.message);  
+          }
+  
+        });
+      },
       handleCommand(command) {
         if (command === 'logout') {
-         this.clearQx();
-         this.PageQx();
+         this.logOut();
         }
        
       }
