@@ -1,7 +1,7 @@
 
 <template>
  <el-row class="container" style="height: 100%">
-    <v-header :user="user" ></v-header>
+    <v-header :user="user" @EditUserInfo="editUserInfo" ></v-header>
     <el-col :span="24" class="main" style=" margin-top: 41px;" >
        <el-row>
           <el-col :span="3">
@@ -56,7 +56,44 @@
       }},
      store,
      methods: {
-       
+       editUserInfo()
+       {
+                var _self=this;
+                console.log(this.$store.state.userInfo.ID);
+                var titleInfo='个人信息维护';
+                var idInfo='99999';
+                var contentInfo='UserInfoBill'
+                    var findbj=-1;
+                    for (var i = 0; i < _self.editabletabs.length; i++) {
+                    if(_self.editabletabs[i].name===idInfo)
+                    {
+                      findbj=i;
+                      break;
+                    }
+
+                  }
+                  if(findbj===-1)
+                  {
+                    var moder={
+                                title: titleInfo,
+                                name: idInfo,
+                                content: contentInfo
+                              };
+
+                        _self.editabletabs.push(moder);
+                        _self.editabletabsvalue=moder.name;
+
+                  }
+                  else{
+                      _self.editabletabsvalue=idInfo;
+                  }
+
+                 
+                
+
+
+         
+       },
       tabsSendData(tabslist,tabsindex)
       {
         this.editabletabs=tabslist;

@@ -31,6 +31,10 @@
       };
     },
     methods: {
+      userInfo()
+      {
+        this.$emit('EditUserInfo');
+      },
       logOut()
       {
            var _self = this;
@@ -72,6 +76,9 @@
       handleCommand(command) {
         if (command === 'logout') {
          this.logOut();
+        }
+         if (command === 'userinfo') {
+           this.userInfo();
         }
        
       }
