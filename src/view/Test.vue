@@ -1,11 +1,9 @@
 <template>
-<div>
-
-</div>
+<div id="map-container"> </div>
 </template>
 <script>
-
 import store from '../store/store.js';
+
   export default {
   
     data() {
@@ -33,10 +31,7 @@ import store from '../store/store.js';
       init() {
   
         var _self = this;
-  
-  
-  
-       
+        
   
       }
   
