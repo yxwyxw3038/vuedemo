@@ -2,7 +2,7 @@
 <template>
  <el-row class="container" style="height: 100%">
     <v-header :user="user" @EditUserInfo="editUserInfo" ></v-header>
-    <el-col :span="24" class="main" style=" margin-top: 41px;" >
+    <el-col id="homeMainLayout" :span="24" class="main" >
        <el-row>
           <el-col :span="3">
           <v-nav :navList="menu"  @ShowUrl="OpenUrl"></v-nav>
@@ -10,7 +10,7 @@
           </el-col>
      
         
-          <el-col :span="21" :offset="3" style=" margin: 0px;">
+          <el-col id="homeTabLayout" :span="21" :offset="3" >
             <!-- <el-tabs v-model="editabletabsvalue" type="card" editable @edit="handleTabsEdit">
             <el-tab-pane
               :key="index"

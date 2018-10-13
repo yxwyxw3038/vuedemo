@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="elCollapseDiv">
   <el-collapse accordion id="searchDiv" >
-  <el-collapse-item>
+  <el-collapse-item >
     <template slot="title" id="searchtitle"  >
      <i class="el-icon-search searchicon" ></i>
     </template>

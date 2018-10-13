@@ -25,13 +25,7 @@
     }
 </script>
 <style>
-.submenuDiv
-{
-  
-    height: 100%;
-    width: 100%;
-    text-align: left;
-}
+
 span
 {
     text-align: left;

@@ -33,13 +33,3 @@ export default {
     }
 }
 </script>
-<style>
-#menuDiv
-{
-    
-    height: 100%;
-    min-height: 800px;
-    width: 100%;
-    border: 1px solid #eee;
-}
-</style>

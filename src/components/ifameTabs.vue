@@ -85,19 +85,6 @@
     }
     </script>
     <style>
-#tabsDiv
-{
-    
-    height: 100%;
-    min-height: 800px;
-    width: 100%;
-}
-.urliframe
-{
-     height: 100%;
-     min-height: 745px;
-     width: 100%;
-     border: 1px solid #eee;
-}
+
 </style>
     
