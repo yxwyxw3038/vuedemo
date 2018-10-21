@@ -3,7 +3,7 @@
  <el-row class="container" style="height: 100%">
     <v-header :user="user" @EditUserInfo="editUserInfo" ></v-header>
     <el-col id="homeMainLayout" :span="24" class="main" >
-       <el-row>
+       <el-row id="homeRowLayout">
           <el-col :span="3">
           <v-nav :navList="menu"  @ShowUrl="OpenUrl"></v-nav>
 

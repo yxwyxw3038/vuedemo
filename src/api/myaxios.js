@@ -2,6 +2,7 @@ import axios from 'axios';
 import qs from 'qs';
 let http = axios.create({
   baseURL: 'http://127.0.0.1:8092',
+  //baseURL: 'http://139.199.2.151:8092',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'

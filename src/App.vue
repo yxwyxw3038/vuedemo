@@ -32,6 +32,9 @@ export default {
    margin: 0px;
 
 }
+#homeRowLayout{
+  display : flex;
+}
 #menuDiv
 {
     

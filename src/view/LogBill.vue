@@ -24,12 +24,12 @@
  
 </el-collapse>
  <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
-  <v-login-text ref="child" :logname="searchLogName"></v-login-text> 
+  <v-log-text ref="child" :logname="searchLogName"></v-log-text> 
 </div>  
 </template>
 <script>
 import btnGroup from '@/components/btnGroup';
-import loginText from '../components/LoginBill/loginText';
+import logText from '../components/LogBill/LogText';
 import store from '../store/store.js';
   export default {
     props: ['menuname','menuid','menutitle'],
@@ -132,7 +132,7 @@ import store from '../store/store.js';
     },
     components: {
              'v-btn-group':btnGroup,
-             'v-login-text':loginText
+             'v-log-text':logText
     }
   
   };

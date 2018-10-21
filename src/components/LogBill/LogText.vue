@@ -1,5 +1,5 @@
 <template>
-<div >
+<div :loading="loading">
 <!-- <p v-for="(subItem,index) in logText" :key="index" >{{subItem}}</p> -->
 <el-table :data="tableData"  border  :row-class-name="tableRowClassName"  @selection-change="handleSelectionChange">
   <el-table-column
@@ -59,6 +59,7 @@
          currentPage:1,
          currentpagesize:10,
          totalCount:400,
+         loading:false
       };
     },
     mounted: function () {
@@ -118,6 +119,7 @@
            var _self = this;
           _self.logData = [];
           _self.tableData = [];
+           _self.loading=true;
            this.$api.post("Sys/LogRead", {
           Token:this.$store.state.userInfo.Token,
           FileName:this.logName
@@ -128,7 +130,7 @@
        
   
           console.log(response.status);
-  
+           _self.loading=false;
           if (response.status >= 200 && response.status < 300) {
   
             if (response.data) {
@@ -159,6 +161,7 @@
   
   
           } else {
+             _self.loading=false;
             this.$message.error(response.message);
   
   

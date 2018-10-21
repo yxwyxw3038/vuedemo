@@ -51,11 +51,11 @@
 
   .login-wrap {
   
-
+ 
     text-align: center;
     background-repeat: no-repeat;
     background-image: url('../assets/image/login_bg.jpg');
-    width: 100%;
+    width:99%;
     height: 800px;
     position: absolute;
     top:50%; 
