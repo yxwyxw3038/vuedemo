@@ -51,7 +51,7 @@
   </el-collapse-item>
  
 </el-collapse>
- <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
+ <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" :loading="loading"></v-btn-group> 
   <el-table :data="tableData"  border :loading="loading" :row-class-name="tableRowClassName"  @selection-change="handleSelectionChange">
   <el-table-column
       type="index"
@@ -331,7 +331,7 @@ if (this.searchCreateTime == null || this.searchCreateTime == undefined || this.
   
         var _self = this;
         _self.tableData = [];
-        _self.loading=false;
+        _self.loading=true;
   
         this.$api.post("Sys/GetAllLoginViewInfo",{
           Token:this.$store.state.userInfo.Token,
@@ -342,7 +342,7 @@ if (this.searchCreateTime == null || this.searchCreateTime == undefined || this.
         }, response => {
   
    
-        _self.loading=true;
+        _self.loading=false;
   
   
           if (response.status >= 200 && response.status < 300) {
@@ -366,6 +366,27 @@ if (this.searchCreateTime == null || this.searchCreateTime == undefined || this.
                 }
   
               } else {
+                
+                 if(jsonData.DataCount)
+                {
+                  _self.totalCount=Number(jsonData.DataCount);
+                  if(_self.totalCount===0)
+                  {
+                      _self.totalCount=1;
+                  }
+                    if(_self.totalCount!=null&&  _self.totalCount>0)
+                  {
+                    if(_self.totalCount%_self.currentpagesize===0)
+                    {
+                      _self.currentPage=_self.currentPage-1;
+                      if(_self.currentPage<=0)
+                      {
+                        _self.currentPage=1;
+                      }
+                      this.init();
+                    }
+                  }
+                }
   
                 _self.$message.error(jsonData.Message);
   

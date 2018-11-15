@@ -58,7 +58,7 @@
   </el-collapse-item>
  
 </el-collapse>
-<v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
+<v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick"  :loading="loading" ></v-btn-group> 
 
   <el-table :data="tableData"  border :loading="loading" :row-class-name="tableRowClassName"  @selection-change="handleSelectionChange">
     <el-table-column
@@ -107,9 +107,9 @@
   
   
     <el-table-column prop="Email" label="邮箱" >
-  
-  
-  
+     
+
+ 
     </el-table-column>
   
   
@@ -119,7 +119,7 @@
     <el-table-column prop="IsAble" label="启用" width="60px"  >
   
    <template slot-scope="scope">
-
+     
       <el-checkbox v-model="scope.row.IsAble===1" disabled></el-checkbox>
     
    </template>
@@ -251,11 +251,13 @@
 import btnGroup from '@/components/btnGroup';
 import store from '../store/store.js';
 import jsbase64 from 'js-base64';
+
   export default {
    props: ['menuname','menuid','menutitle'], 
     data() {
   
       return {
+ 
         user:new Object(),
         tableData: [],
         loading:false,
@@ -849,9 +851,9 @@ import jsbase64 from 'js-base64';
           
 
          }
-         
+           _self.loading=true;
            this.$api.post("User/DeleteUser", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
-        
+           _self.loading=false;
          
   
          
@@ -1149,7 +1151,7 @@ import jsbase64 from 'js-base64';
         _self.tableData = [];
   
   
-  
+         _self.loading=true;
          this.$api.post("User/GetAllUserViewInfo", {
           Token:this.$store.state.userInfo.Token,
           ParameterStr: this.UserBillParameterStr,
@@ -1157,7 +1159,7 @@ import jsbase64 from 'js-base64';
           CurrentPage:this.currentPage
 
          }, response => {
-  
+         _self.loading=false;
      
   
   
@@ -1184,6 +1186,28 @@ import jsbase64 from 'js-base64';
                 }
   
               } else {
+
+                 if(jsonData.DataCount)
+                {
+                  _self.totalCount=Number(jsonData.DataCount);
+                  if(_self.totalCount===0)
+                  {
+                      _self.totalCount=1;
+                  }
+                    if(_self.totalCount!=null&&  _self.totalCount>0)
+                  {
+                    if(_self.totalCount%_self.currentpagesize===0)
+                    {
+                      _self.currentPage=_self.currentPage-1;
+                      if(_self.currentPage<=0)
+                      {
+                        _self.currentPage=1;
+                      }
+                      this.init();
+                    }
+                  }
+                }
+                
   
                 _self.$message.error(jsonData.Message);
  
@@ -1207,6 +1231,21 @@ import jsbase64 from 'js-base64';
       }
   
     },
+      watch:
+    {
+        dialogFormVisible(val) 
+        {
+            this.loading=val;
+        },
+        dialogSetUserRoleVisible(val) 
+        {
+            this.loading=val;
+        },
+        dialogSetUserDeptVisible(val)
+        {
+           this.loading=val;
+        }
+    }  ,
     components: {
              'v-btn-group':btnGroup
     } 

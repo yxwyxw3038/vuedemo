@@ -1,7 +1,7 @@
 <template>
 <div id="buttongroup">
 <el-button-group>
-<el-button size="mini"  v-for="subItem in buttonData" :key="subItem.Code"   :icon="subItem.Icon" :title="subItem.Code"  @click="myclick"  >{{subItem.Name}} </el-button>
+<el-button size="mini"  v-for="subItem in buttonData" :key="subItem.Code"   :icon="subItem.Icon" :title="subItem.Code"  @click="myclick" :loading="buttonloading" >{{subItem.Name}} </el-button>
 
 </el-button-group>
 </div>
@@ -10,10 +10,11 @@
 import store from '../store/store.js';
   export default {
   
-     props: ['userid','menuid'],
+     props: ['userid','menuid','loading'],
     data () {
       return {
          buttonData:{},
+         buttonloading:false
       };
     },
      store,
@@ -86,7 +87,17 @@ import store from '../store/store.js';
       }
      },
     created() {
+     this.buttonloading=this.loading;
      this.GetData();
+    },
+     watch:
+    {
+       
+        loading(val) 
+        {
+            this.buttonloading=val;
+        
+        }
     }
   };
 </script>

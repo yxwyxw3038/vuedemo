@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import ElementUItheme from 'element-theme-chalk'
+import $ from 'jquery';
 import Api from  './api/myaxios'
 import store from './store/store.js'
 import competence from './utils/competence.js'

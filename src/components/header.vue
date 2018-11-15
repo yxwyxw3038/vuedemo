@@ -104,7 +104,7 @@
   }
   .header-operations {
     display: inline-block;
-     float: right; 
+    float: right; 
     padding-right: 30px;
     height: 100%;
     margin:0px;

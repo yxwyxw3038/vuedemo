@@ -26,7 +26,7 @@
   </el-collapse-item>
  
 </el-collapse>
- <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
+ <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" :loading="loading" ></v-btn-group> 
 
  
 
@@ -478,9 +478,9 @@ roleauthorize()
           
 
          }
-         
+           _self.loading=true;
            this.$api.post("User/DeleteRole", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
-        
+          _self.loading=false;
          
   
          
@@ -585,7 +585,7 @@ roleauthorize()
   
         _self.tableData = [];
   
-  _self.loading=false;
+  _self.loading=true;
   
         this.$api.post("User/GetAllRoleInfo",{
           Token:this.$store.state.userInfo.Token,
@@ -596,7 +596,7 @@ roleauthorize()
         }, response => {
   
    
-        _self.loading=true;
+        _self.loading=false;
   
   
           if (response.status >= 200 && response.status < 300) {
@@ -621,6 +621,28 @@ roleauthorize()
                 }
   
               } else {
+
+                 if(jsonData.DataCount)
+                {
+                  _self.totalCount=Number(jsonData.DataCount);
+                  if(_self.totalCount===0)
+                  {
+                      _self.totalCount=1;
+                  }
+                    if(_self.totalCount!=null&&  _self.totalCount>0)
+                  {
+                    if(_self.totalCount%_self.currentpagesize===0)
+                    {
+                      _self.currentPage=_self.currentPage-1;
+                      if(_self.currentPage<=0)
+                      {
+                        _self.currentPage=1;
+                      }
+                      this.init();
+                    }
+                  }
+                }
+                
   
                 _self.$message.error(jsonData.Message);
   
@@ -644,6 +666,18 @@ roleauthorize()
   
       }  
     },
+     watch:
+    {
+      dialogSetRoleAuthorizeVisible(val)
+      {
+        
+        this.loading=val;
+      },
+        dialogFormVisible(val) 
+        {
+            this.loading=val;
+        }
+    }  ,
     components: {
              'v-btn-group':btnGroup,
              'v-role-set-authorize':RoleSetAuthorize

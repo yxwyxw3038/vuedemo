@@ -1,5 +1,5 @@
 <template>
-<div :loading="loading">
+<div >
 <!-- <p v-for="(subItem,index) in logText" :key="index" >{{subItem}}</p> -->
 <el-table :data="tableData"  border  :row-class-name="tableRowClassName"  @selection-change="handleSelectionChange">
   <el-table-column
@@ -50,7 +50,7 @@
 
   export default {
   
-    props: ['logname'],
+    props: ['logname','loading'],
     data () {
       return {
          tableData: [],
@@ -59,7 +59,7 @@
          currentPage:1,
          currentpagesize:10,
          totalCount:400,
-         loading:false
+         templateLoading:false
       };
     },
     mounted: function () {
@@ -119,7 +119,7 @@
            var _self = this;
           _self.logData = [];
           _self.tableData = [];
-           _self.loading=true;
+           _self.templateLoading=true;
            this.$api.post("Sys/LogRead", {
           Token:this.$store.state.userInfo.Token,
           FileName:this.logName
@@ -130,7 +130,7 @@
        
   
           console.log(response.status);
-           _self.loading=false;
+           _self.templateLoading=false;
           if (response.status >= 200 && response.status < 300) {
   
             if (response.data) {
@@ -161,7 +161,7 @@
   
   
           } else {
-             _self.loading=false;
+           
             this.$message.error(response.message);
   
   
@@ -193,10 +193,20 @@
       
      },
     created() {
+    this.templateLoading=this.loading;
     // this.GetData();
     },
     watch:
     {
+            templateLoading(val) 
+            {
+                this.$emit('update:loading', val);
+            },
+            loading(val) 
+            {
+               this.templateLoading=val;
+               
+            },
             logname(val) 
             {
                this.logName=val;

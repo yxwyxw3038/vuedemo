@@ -11,6 +11,26 @@ export default {
 </script>
 
 <style>
+.el-collapse-item__header,
+.el-collapse-item__content,
+.el-button-group >.el-button,
+.el-table th
+{
+     background:  rgb(246, 252, 255);
+}
+.el-table th > .cell
+{
+  text-align: center;
+}
+.el-dialog__title 
+{
+    color: #ffffff;
+
+}
+.el-dialog__header
+{
+   background:   rgb(29, 67, 95);
+}
   body {
     height: 100%;
    

@@ -28,7 +28,7 @@
   </el-collapse-item>
  
 </el-collapse>
- <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
+ <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" :loading="loading"></v-btn-group> 
 
  
 
@@ -217,7 +217,7 @@ import store from '../store/store.js';
       submitInfo()
       {
         
-        
+      
        var optUrl="User/AddButton";
        if( this.dialogEditOrNew==="0")
        {
@@ -249,7 +249,7 @@ import store from '../store/store.js';
                   });
 
               this.dialogFormVisible=false;
-  
+             
              this.init();
               } else {
   
@@ -504,9 +504,9 @@ import store from '../store/store.js';
           
 
          }
-         
-           this.$api.post("User/DeleteButton", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
-        
+          this.loading=true;
+          this.$api.post("User/DeleteButton", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
+          this.loading=false;
          
   
          
@@ -618,7 +618,7 @@ import store from '../store/store.js';
   
         var _self = this;
         _self.tableData = [];
-        _self.loading=false;
+         this.loading=true;
   
         this.$api.post("User/GetAllButtonInfo",{
           Token:this.$store.state.userInfo.Token,
@@ -629,7 +629,7 @@ import store from '../store/store.js';
         }, response => {
   
    
-        _self.loading=true;
+        _self.loading=false;
   
   
           if (response.status >= 200 && response.status < 300) {
@@ -653,6 +653,26 @@ import store from '../store/store.js';
                 }
   
               } else {
+                if(jsonData.DataCount)
+                {
+                  _self.totalCount=Number(jsonData.DataCount);
+                  if(_self.totalCount===0)
+                  {
+                      _self.totalCount=1;
+                  }
+                    if(_self.totalCount!=null&&  _self.totalCount>0)
+                  {
+                    if(_self.totalCount%_self.currentpagesize===0)
+                    {
+                      _self.currentPage=_self.currentPage-1;
+                      if(_self.currentPage<=0)
+                      {
+                        _self.currentPage=1;
+                      }
+                      this.init();
+                    }
+                  }
+                }
   
                 _self.$message.error(jsonData.Message);
   
@@ -676,6 +696,13 @@ import store from '../store/store.js';
   
       }
     },
+     watch:
+    {
+        dialogFormVisible(val) 
+        {
+            this.loading=val;
+        }
+    }  ,
     components: {
              'v-btn-group':btnGroup
          

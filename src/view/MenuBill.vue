@@ -28,7 +28,7 @@
   </el-collapse-item>
  
 </el-collapse>
- <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
+ <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" :loading="loading"></v-btn-group> 
 
  
 
@@ -278,9 +278,10 @@ import store from '../store/store.js';
              }
            }
          }
+         this.loading=true;
         // buttonStr=
          this.$api.post("User/SetMenuButton", {  Token:this.$store.state.userInfo.Token,menuId:this.multipleSelection[0].Id ,buttonStr:buttonStr}, response => {
-
+         this.loading=false;
           if (response.status >= 200 && response.status < 300) {
   
             if (response.data) {
@@ -344,8 +345,9 @@ import store from '../store/store.js';
          var Jsonstr= JSON.stringify(this.form);
 
            var _self = this;
+           this.loading=true;
            this.$api.post(optUrl, {  Token:this.$store.state.userInfo.Token,str:Jsonstr}, response => {
-        
+           this.loading=false;
           
     
   
@@ -421,8 +423,9 @@ import store from '../store/store.js';
       GetMenu()
       {
         var _self = this;
-           this.$api.post("User/GetCascaderMenuo", {  Token:this.$store.state.userInfo.Token}, response => {
-        
+        this.loading=true;
+        this.$api.post("User/GetCascaderMenuo", {  Token:this.$store.state.userInfo.Token}, response => {
+        this.loading=false;
            _self.menu=[];
   
          // console.log(response.status);
@@ -537,8 +540,9 @@ import store from '../store/store.js';
           var _self = this;
           this.dialogTitle="新增菜单";
           this.dialogEditOrNew="0";
-           this.$api.post("User/GetMenuAllCount", {  Token:this.$store.state.userInfo.Token}, response => {
-        
+          this.loading=true;
+          this.$api.post("User/GetMenuAllCount", {  Token:this.$store.state.userInfo.Token}, response => {
+          this.loading=false;
          
   
          
@@ -616,11 +620,12 @@ import store from '../store/store.js';
       }
            this.dialogTitle="修改菜单";
            this.dialogEditOrNew="1";
-          var _self = this;
+           var _self = this;
+           this.loading=true;
            this.$api.post("User/GetMenuById", {  
               Token:this.$store.state.userInfo.Token,
               Id: this.multipleSelection[0].Id}, response => {
-        
+           this.loading=false;
          
   
          
@@ -718,9 +723,9 @@ import store from '../store/store.js';
           
 
          }
-         
+           this.loading=true;
            this.$api.post("User/DeleteMenu", {  Token:this.$store.state.userInfo.Token,str:str}, response => {
-        
+           this.loading=false;
          
   
          
@@ -957,7 +962,7 @@ import store from '../store/store.js';
   
         _self.tableData = [];
   
-  _self.loading=false;
+  _self.loading=true;
   
         this.$api.post("User/GetAllMenuInfo",{
           Token:this.$store.state.userInfo.Token,
@@ -968,7 +973,7 @@ import store from '../store/store.js';
         }, response => {
   
    
-        _self.loading=true;
+        _self.loading=false;
   
   
           if (response.status >= 200 && response.status < 300) {
@@ -993,6 +998,28 @@ import store from '../store/store.js';
                 }
   
               } else {
+
+                 if(jsonData.DataCount)
+                {
+                  _self.totalCount=Number(jsonData.DataCount);
+                  if(_self.totalCount===0)
+                  {
+                      _self.totalCount=1;
+                  }
+                    if(_self.totalCount!=null&&  _self.totalCount>0)
+                  {
+                    if(_self.totalCount%_self.currentpagesize===0)
+                    {
+                      _self.currentPage=_self.currentPage-1;
+                      if(_self.currentPage<=0)
+                      {
+                        _self.currentPage=1;
+                      }
+                      this.init();
+                    }
+                  }
+                }
+                
   
                 _self.$message.error(jsonData.Message);
   

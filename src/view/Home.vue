@@ -36,6 +36,7 @@
  import header from '@/components/header';
  import nav from '@/components/nav';
  import ifameTabs from '@/components/ifameTabs';
+
   export default {
       data() {
 
@@ -49,13 +50,28 @@
           name: '0',
           content: 'Test'
       
-        }]
-  
-  
+        }],
+        websocket: null,
+        websocketmsg:'',
+        websocketdata:'',
+        websocketstatus:false
  
       
       }},
      store,
+
+  mounted() {
+    if ('WebSocket' in window) {
+      
+     // this.initWebSocket();
+     // this.timerRun();
+    } else {
+     
+        this.$message.error('当前浏览器 Not support websocket');
+    }
+    },
+
+
      methods: {
        editUserInfo()
        {
@@ -253,7 +269,86 @@
           }
   
         });
+      },
+      initWebSocket() {
+        this.websocket = new WebSocket('ws://127.0.0.1:8085/InfoSocket');
+      //连接错误
+      this.websocket.onerror = this.setErrorMessage
+
+      // //连接成功
+      this.websocket.onopen = this.setOnopenMessage
+
+      //收到消息的回调
+      this.websocket.onmessage = this.setOnmessageMessage
+
+      //连接关闭的回调
+      this.websocket.onclose = this.setOncloseMessage
+
+      //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+      window.onbeforeunload = this.onbeforeunload
+      this.websocketstatus=true;
+     
+
+    },
+    setErrorMessage() {
+      this.websocketdata = "WebSocket连接发生错误" + '   状态码：' + this.websocket.readyState;
+      console.log("WebSocket连接发生错误");
+        this.websocketstatus=false;
+    },
+    setOnopenMessage() {
+      this.websocketdata = "WebSocket连接成功" + '   状态码：' + this.websocket.readyState;
+      //this.$message.error(this.websocketdata);
+      //this.$message.error('aaa');
+      console.log(this.websocketdata);
+        this.websocketstatus=true;
+    },
+    setOnmessageMessage(event) {
+      this.websocketdata = '服务端返回：' + event.data;
+      console.log(this.websocketdata);
+     
+    },
+    setOncloseMessage() {
+      //this.websocketdata = "WebSocket连接关闭" + '   状态码：' + this.websocket.readyState;
+      console.log("WebSocket连接关闭");
+      //this.$nextTick(function () {
+       setTimeout(this.initWebSocket, 15000);
+        // })
+    },
+    onbeforeunload() {
+      this.closeWebSocket();
+    },
+    timerRun()
+    {
+      
+    setInterval(this.timerSend, 30000);
+     
+    },
+    timerSend()
+    {
+      if(this.websocketstatus===true )
+      {
+        try{
+              
+              this.websocketmsg = 'timerSend';
+              this.send();
+        }
+        catch(e){
+            this.$message.error(e.Message);
+        }
       }
+      
+    },
+    //websocket发送消息
+    send() {
+      this.websocket.send(this.websocketmsg);
+      this.websocketmsg = '';
+    },
+    closeWebSocket() {
+      this.websocket.close()
+    }
+
+     
+
      },
   
   created() {

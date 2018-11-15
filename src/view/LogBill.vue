@@ -23,8 +23,8 @@
   </el-collapse-item>
  
 </el-collapse>
- <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" ></v-btn-group> 
-  <v-log-text ref="child" :logname="searchLogName"></v-log-text> 
+ <v-btn-group :userid="user.ID"  :menuid="this.menuid" @btnclick="mybtnclick" :loading="loading" ></v-btn-group> 
+  <v-log-text ref="child" :logname="searchLogName" :loading.sync="loading"></v-log-text> 
 </div>  
 </template>
 <script>
@@ -39,7 +39,8 @@ import store from '../store/store.js';
         user:new Object(),
         logBillParameterStr:'',
         searchLogName:'',
-        logOptions:[]
+        logOptions:[],
+        loading:false
       };
   
     },
@@ -50,7 +51,7 @@ import store from '../store/store.js';
     created() {
       this.user=this.$store.state.userInfo;
       this.GetlogOptions();
- 
+  
     
     },
   
@@ -62,8 +63,9 @@ import store from '../store/store.js';
     GetlogOptions()
     {
            var _self = this;
+           this.loading=true;
            this.$api.post("Sys/GetAllLogList", {  Token:this.$store.state.userInfo.Token}, response => {
-        
+           this.loading=false;
            _self.logOptions=[];
   
          // console.log(response.status);

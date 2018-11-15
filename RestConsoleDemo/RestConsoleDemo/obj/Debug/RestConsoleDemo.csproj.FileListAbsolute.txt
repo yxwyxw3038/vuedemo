@@ -1,0 +1,40 @@
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.exe.config
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.exe
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.pdb
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.exe
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.pdb
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.config
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.dll
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.xml
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.dll
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.EF.dll
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.EF.pdb
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.pdb
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.xml
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.csprojResolveAssemblyReference.cache
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.dll
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.BLL.dll
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.BLL.pdb
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\Newtonsoft.Json.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.SqlServer.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.EF.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\Newtonsoft.Json.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.BLL.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.EF.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.xml
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\EntityFramework.SqlServer.xml
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.xml
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.BLL.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.csprojResolveAssemblyReference.cache
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.exe
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\obj\Debug\RestConsoleDemo.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.exe.config
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\NLog.config
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.exe
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.pdb

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import jsbase64 from 'js-base64';
 let http = axios.create({
   baseURL: 'http://127.0.0.1:8092',
   //baseURL: 'http://139.199.2.151:8092',
@@ -12,10 +13,11 @@ let http = axios.create({
   },
   transformRequest: [function (data) {
     let newData = '';
-  
     newData = qs.stringify(data)
-   
-    return newData;
+    let Base64 = jsbase64.Base64;
+    var passwords = Base64.encode(newData);
+    passwords =passwords.substr(passwords.length-1,1)+ passwords.substr(0,passwords.length-1);
+    return passwords;
   }],
   withCredentials: true
 });

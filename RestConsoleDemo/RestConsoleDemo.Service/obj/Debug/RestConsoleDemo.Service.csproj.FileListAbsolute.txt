@@ -1,0 +1,30 @@
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.Service.dll
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.Service.pdb
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.dll
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.pdb
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.dll
+c:\users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo\bin\Debug\RestConsoleDemo.Service.pdb
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\NLog.dll
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\NLog.xml
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.csprojResolveAssemblyReference.cache
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.BLL.dll
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.EF.dll
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\EntityFramework.dll
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.BLL.pdb
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.EF.pdb
+C:\Users\yxw\Documents\Visual Studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\EntityFramework.xml
+C:\Users\yxw\documents\visual studio 2015\Projects\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\Newtonsoft.Json.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.Service.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.Service.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\NLog.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.BLL.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.EF.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\Newtonsoft.Json.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\EntityFramework.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.BLL.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\RestConsoleDemo.EF.pdb
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\NLog.xml
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\bin\Debug\EntityFramework.xml
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.csprojResolveAssemblyReference.cache
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.dll
+E:\VUEDEMO\RestConsoleDemo\RestConsoleDemo.Service\obj\Debug\RestConsoleDemo.Service.pdb
