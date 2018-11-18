@@ -7,14 +7,17 @@ import ElementUI from 'element-ui'
 import ElementUItheme from 'element-theme-chalk'
 import $ from 'jquery';
 import Api from  './api/myaxios'
+import Api1 from  './api/myaxios1'
 import store from './store/store.js'
 import competence from './utils/competence.js'
-
+//import VueWebsocket from "vue-websocket";
 Vue.prototype.$api = Api
+Vue.prototype.$api1 = Api1
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 Vue.use(ElementUItheme);
 Vue.use(competence);
+//Vue.use(VueWebsocket, "ws://localhost:8085/InfoSocket");
 
 /* eslint-disable no-new */
 new Vue({

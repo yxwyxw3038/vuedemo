@@ -1,6 +1,0 @@
-2018-07-24 11:31:43.4880|RestConsoleDemo.Program|INFO|程序启动！ 
-2018-07-24 11:31:44.4360|RestConsoleDemo.Program|INFO|RestConsoleDemo.Service.CustService服务已加载！ 
-2018-07-24 11:31:44.4360|RestConsoleDemo.Program|INFO|RestConsoleDemo.Service.PublicService服务已加载！ 
-2018-07-24 11:31:44.4360|RestConsoleDemo.Program|INFO|RestConsoleDemo.Service.UserInfoService服务已加载！ 
-2018-07-24 11:32:16.2380|RestConsoleDemo.Service.SecretAuth.SecretKeyAuthorization|INFO|用户：127.0.0.1:2492访问服务,请求参数(/User/GetUserByAccountName)！ 
-2018-07-24 11:32:28.8740|RestConsoleDemo.Service.SecretAuth.SecretKeyAuthorization|INFO|用户：127.0.0.1:2492访问服务,请求参数(/User/GetUserByAccountName)！ 

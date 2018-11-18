@@ -219,7 +219,7 @@ export default {
           
             Code :'',
             No :'',
-            ftypeid :'',
+            ftypeid :1,
             ftitle :'',
             fcontent :'',
             CreateTime :'',
@@ -242,6 +242,10 @@ export default {
           fcontent: [
             { required: true, message: '请输入通知内容', trigger: 'blur' }
          
+          ],
+          ftypeid:
+          [
+              { required: true, message: '请输入通知类型', trigger: 'blur' }
           ]
       
           
@@ -659,24 +663,7 @@ export default {
         
 
         },
-       getMyDate(str){  
-            var oDate = new Date(str);
-            var oYear = oDate.getFullYear();  
-            var oMonth = oDate.getMonth();  
-            var oDay = oDate.getDate(); 
-            var oHour = oDate.getHours();
-            var oMin = oDate.getMinutes();  
-            var oSen = oDate.getSeconds(); 
-            var oTime = oYear +'-'+ this.getzf(oMonth) +'-'+ this.getzf(oDay) +' '+ this.getzf(oHour) +':'+ this.getzf(oMin) +':'+this.getzf(oSen);//最后拼接时间  
-            return oTime;  
-        },
-        //补0操作
-        getzf(num){  
-          if(parseInt(num) < 10){  
-              num = '0'+num;  
-          }  
-          return num;  
-        },
+     
         submitInfo()
         {
                
@@ -779,7 +766,7 @@ export default {
                   
                           Code :'',
                           No :'',
-                          ftypeid :'',
+                          ftypeid :1,
                           ftitle :'',
                           fcontent :'',
                           CreateTime :this.getMyDate(datetime.getTime()),

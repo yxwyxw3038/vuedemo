@@ -494,7 +494,7 @@ import NoticeEdit from '@/components/NoticeBill/NoticeEdit'
   
         });
   
-      },
+      }
  
     },
       watch:

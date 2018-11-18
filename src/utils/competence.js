@@ -105,5 +105,22 @@ Vue.prototype.GetToken = function (){
         return newuserInfo.Token;
 
     }
-}
+},
+Vue.prototype.getMyDate = function (str){  
+    var oDate = new Date(str);
+    var oYear = oDate.getFullYear();  
+    var oMonth = oDate.getMonth();  
+    var oDay = oDate.getDate(); 
+    var oHour = oDate.getHours();
+    var oMin = oDate.getMinutes();  
+    var oSen = oDate.getSeconds(); 
+    var oTime = oYear +'-'+ this.getzf(oMonth) +'-'+ this.getzf(oDay) +' '+ this.getzf(oHour) +':'+ this.getzf(oMin) +':'+this.getzf(oSen);//最后拼接时间  
+    return oTime;  
+},
+Vue.prototype.getzf =function (num){  
+    if(parseInt(num) < 10){  
+        num = '0'+num;  
+    }  
+    return num;  
+  }
 };

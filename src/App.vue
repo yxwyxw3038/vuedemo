@@ -6,7 +6,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+   data() {
+      return {
+      FileServiceUrl:'http://localhost:8088/File'
+  }
+  }
 }
 </script>
 
