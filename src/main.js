@@ -10,6 +10,7 @@ import Api from  './api/myaxios'
 import Api1 from  './api/myaxios1'
 import store from './store/store.js'
 import competence from './utils/competence.js'
+
 //import VueWebsocket from "vue-websocket";
 Vue.prototype.$api = Api
 Vue.prototype.$api1 = Api1
@@ -26,4 +27,5 @@ new Vue({
   store,
   components: { App },
   template: '<App/>'
-})
+});
+
